@@ -17,6 +17,8 @@ public class MainMenu : MonoBehaviour
         money = PlayerPrefs.GetInt("money");
         total_money = PlayerPrefs.GetInt("total_money");
         levelScore = PlayerPrefs.GetInt("levelScore");
+        moneyText.text = money.ToString();
+        scoreText.text = levelScore.ToString();
     }
     public void ButtonClick()
     {
@@ -45,6 +47,7 @@ public class MainMenu : MonoBehaviour
         money = 0;
         PlayerPrefs.SetInt("money", money);
         levelScore = 1;
+        up = 10;
         PlayerPrefs.SetInt("levelScore", levelScore);
         
     }    
