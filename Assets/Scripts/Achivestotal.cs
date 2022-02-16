@@ -6,44 +6,21 @@ using UnityEngine.SceneManagement;
 
 public class Achivestotal : MonoBehaviour
 {
-    public int total_money;
-    public Text txt;
-    //int you=0;
+    //public int total_money;
+    
+    int koin = 1;
+    public Text kointext;
+    //int levelScore;
     [SerializeField] Button firstAch;
-    [SerializeField] bool isfirst ;
-    // Start is called before the first frame update
+
     void Start()
     {
-        // проблема с выключением кнопки
-        //int money = PlayerPrefs.GetInt("money");
-        total_money = PlayerPrefs.GetInt("total_money");
-        //isfirst = 0;
-        //isfirst = PlayerPrefs.GetInt("isfirst", isfirst==0 ? 0:1 );
-
-        //you = PlayerPrefs.GetInt("you");
-        //isfirst = PlayerPrefs.GetInt("isfirst") == 1 ? firstAch.GetComponent<Button>().interactable = true : firstAch.GetComponent<Button>().interactable = false;
-        //isfirst = PlayerPrefs.GetInt("isfirst") == 1 ? true : false;
-        if (PlayerPrefs.GetInt("isfirst") == 1)
-        {
-            isfirst = true;
-        }
-        else
-        {
-            isfirst = false;
-        }
-        if (total_money >= 10 && !isfirst)
-        { 
-            firstAch.interactable =true;
-            
-        }
-        else
-        {
-            firstAch.interactable = false;
-        }
+      
+       
     }
     public void LoMenu()
     {
-        //PlayerPrefs.SetInt("you", you);
+        
         SceneManager.LoadScene(0);
     }
     public void GetFirst()
@@ -51,20 +28,34 @@ public class Achivestotal : MonoBehaviour
         int money = PlayerPrefs.GetInt("money");//загрузить
         money += 10;
         PlayerPrefs.SetInt("money", money);//сохранить
-        isfirst = true;
-        PlayerPrefs.SetInt("isfirst", isfirst ? 1 : 0);
+
+        
+        int koin = 1;
+        PlayerPrefs.SetInt("koin", koin);
+        
     }
+    /*public void ClearFirst()
+    {
+        int koin = PlayerPrefs.GetInt("koin");
+        koin = 0;
+        PlayerPrefs.SetInt("koin", koin);
+    }*/
     private void Update()
     {
-        if (PlayerPrefs.GetInt("isfirst") == 1)
+        int money = PlayerPrefs.GetInt("money");
+        int koin = PlayerPrefs.GetInt("koin");
+        kointext.text = koin.ToString();
+        if (money >= 10 && koin ==0 )
         {
-            isfirst = true;
+            firstAch.interactable = true;
+
         }
         else
         {
-            isfirst = false;
+            firstAch.interactable = false;
         }
     }
+
 
 
 

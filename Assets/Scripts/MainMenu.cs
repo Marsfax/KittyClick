@@ -6,31 +6,36 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    
     [SerializeField] int money;
     public Text moneyText;
     [SerializeField] int levelScore;
     public Text scoreText;
     private int up = 10;
-    public int total_money;
+    
     private void Start()
     {
+        
         money = PlayerPrefs.GetInt("money");
-        total_money = PlayerPrefs.GetInt("total_money");
-        levelScore = PlayerPrefs.GetInt("levelScore");
         moneyText.text = money.ToString();
+        
+        levelScore = PlayerPrefs.GetInt("levelScore");
         scoreText.text = levelScore.ToString();
+       
+        
     }
     public void ButtonClick()
     {
+        //pri dostigenii yvelichivaet uroven
         money++;
-        total_money++;
+        
         if (money >= up)
         {
             ScoreUp();
             up *= 2;
         }
         PlayerPrefs.SetInt("money", money);
-        PlayerPrefs.SetInt("total_money", total_money);
+        
         
     }
     public void ToUpping()
@@ -41,20 +46,23 @@ public class MainMenu : MonoBehaviour
     {
         levelScore++;
     }
-    public void ClereBut()//уровень при сбрасывании увеличивваается впоследующем на 20
-        //из-за умножения на 2
+    public void ClereBut()
     {
         money = 0;
         PlayerPrefs.SetInt("money", money);
         levelScore = 1;
         up = 10;
         PlayerPrefs.SetInt("levelScore", levelScore);
-        
+        int koin = PlayerPrefs.GetInt("koin");
+        koin = 0;
+        PlayerPrefs.SetInt("koin", koin);
+
     }    
     
    
     void Update()
     {
+        PlayerPrefs.SetInt("levelScore", levelScore);
         moneyText.text = money.ToString();
         scoreText.text = levelScore.ToString();
         
