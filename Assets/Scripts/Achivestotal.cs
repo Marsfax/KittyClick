@@ -8,10 +8,15 @@ public class Achivestotal : MonoBehaviour
 {
     //public int total_money;
     
-    int koin = 1;
+    int koin = 0;
+    int koint = 0;
+    int koinh = 0;
     public Text kointext;
     //int levelScore;
     [SerializeField] Button firstAch;
+    [SerializeField] Button thisttAch;
+    [SerializeField] Button treeAch;
+    
 
     void Start()
     {
@@ -25,14 +30,34 @@ public class Achivestotal : MonoBehaviour
     }
     public void GetFirst()
     {   
-        int money = PlayerPrefs.GetInt("money");//загрузить
+        int money = PlayerPrefs.GetInt("money");//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         money += 10;
-        PlayerPrefs.SetInt("money", money);//сохранить
+        PlayerPrefs.SetInt("money", money);//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
         
         int koin = 1;
         PlayerPrefs.SetInt("koin", koin);
         
+    }
+    public void GetTwesdy()
+    {
+        int money = PlayerPrefs.GetInt("money");//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+        money += 100;
+        PlayerPrefs.SetInt("money", money);//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+
+        
+        int koint = 1;
+        PlayerPrefs.SetInt("koint", koint);
+    }
+    public void GetThree()
+    {
+        int money = PlayerPrefs.GetInt("money");//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+        money += 1000;
+        PlayerPrefs.SetInt("money", money);//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+
+        
+        int koinh = 1;
+        PlayerPrefs.SetInt("koinh", koinh);
     }
     /*public void ClearFirst()
     {
@@ -44,6 +69,8 @@ public class Achivestotal : MonoBehaviour
     {
         int money = PlayerPrefs.GetInt("money");
         int koin = PlayerPrefs.GetInt("koin");
+        int koint = PlayerPrefs.GetInt("koint");
+        int koinh = PlayerPrefs.GetInt("koinh");
         kointext.text = koin.ToString();
         if (money >= 10 && koin ==0 )
         {
@@ -53,6 +80,24 @@ public class Achivestotal : MonoBehaviour
         else
         {
             firstAch.interactable = false;
+        }
+        if (money >= 100 && koint ==0 )
+        {
+            thisttAch.interactable = true;
+
+        }
+        else
+        {
+            thisttAch.interactable = false;
+        }
+        if (money >= 1000 && koinh ==0 )
+        {
+            treeAch.interactable = true;
+
+        }
+        else
+        {
+            treeAch.interactable = false;
         }
     }
 
