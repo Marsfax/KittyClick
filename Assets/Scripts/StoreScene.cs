@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class Achivestotal : MonoBehaviour
+public class StoreScene : MonoBehaviour
 {
     //public int total_money;
 
