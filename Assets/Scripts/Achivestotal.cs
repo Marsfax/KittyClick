@@ -6,25 +6,42 @@ using UnityEngine.SceneManagement;
 
 public class Achivestotal : MonoBehaviour
 {
-    //public int total_money;
-
-    [SerializeField] int koin = 0;
-    /*[SerializeField] int koint = 0;
-    [SerializeField] int koinh = 0;*/
-    public Text kointext;
-    /*public Text kointtext;
-    public Text koinhtext;*/
-    //int levelScore;
-    [SerializeField] Button firstAch;
-    /*[SerializeField] Button thisttAch;
-    [SerializeField] Button treeAch;*/
     
+    // koint and koinh no value is assigned "0", assigned automatically "2" 
+    [SerializeField] int koin = 0;
+    [SerializeField] int koint = 2;
+    [SerializeField] int koinh = 2;
 
+    public Text kointext;
+    public Text kointextb;
+    public Text kointextj;
+    
+    [SerializeField] Button firstAch;
+    [SerializeField] Button thisttAch;
+    [SerializeField] Button treeAch;
+    
+    public void Cindition (int a, int b, int c, int d, Button but)
+    {
+        int money = PlayerPrefs.GetInt("a");
+        PlayerPrefs.SetInt("a", a);
+       
+        if (a >= d && b == c)
+        {
+            but.interactable = true;
+
+        }
+        else
+        {
+            but.interactable = false;
+        } 
+    }
     void Start()
     {
  
-        //StartCoroutine(IdleFarm());
+        
         int koin = PlayerPrefs.GetInt("koin");
+        int koint = PlayerPrefs.GetInt("koint");
+        int koinh = PlayerPrefs.GetInt("koinh");
         if (koin == 1)
         {
             StartCoroutine(IdleFarm());
@@ -49,14 +66,14 @@ public class Achivestotal : MonoBehaviour
         PlayerPrefs.SetInt("koin", koin);
         StartCoroutine(IdleFarm());
     }
-    /*public void GetTwesdy()
+    public void GetTwesdy()
     {
         int money = PlayerPrefs.GetInt("money");//���������
         money += 100;
         PlayerPrefs.SetInt("money", money);//���������
 
         
-        int koint = 1;
+        int koint = 3;
         PlayerPrefs.SetInt("koint", koint);
     }
     public void GetThree()
@@ -66,15 +83,10 @@ public class Achivestotal : MonoBehaviour
         PlayerPrefs.SetInt("money", money);//���������
 
         
-        int koinh = 1;
+        int koinh = 3;
         PlayerPrefs.SetInt("koinh", koinh);
-    }*/
-    /*public void ClearFirst()
-    {
-        int koin = PlayerPrefs.GetInt("koin");
-        koin = 0;
-        PlayerPrefs.SetInt("koin", koin);
-    }*/
+    }
+   
     IEnumerator IdleFarm()
     {
 
@@ -93,13 +105,13 @@ public class Achivestotal : MonoBehaviour
     {
         int money = PlayerPrefs.GetInt("money");
         int koin = PlayerPrefs.GetInt("koin");
-        /*int koint = PlayerPrefs.GetInt("koint");
-        int koinh = PlayerPrefs.GetInt("koinh");*/
+        int koint = PlayerPrefs.GetInt("koint");
+        int koinh = PlayerPrefs.GetInt("koinh");
         kointext.text = koin.ToString();
-        /*kointtext.text = koint.ToString();
-        kointtext.text = koinh.ToString();*/
-        
-        if (money >= 10 && koin ==0 )
+        kointextb.text = koint.ToString();
+        kointextj.text = koinh.ToString();
+
+        /*if (money >= 10 && koin ==0 )
         {
             firstAch.interactable = true;
 
@@ -107,21 +119,12 @@ public class Achivestotal : MonoBehaviour
         else
         {
             firstAch.interactable = false;
-        }
-        /*if (koin == 1)
-        {
-            StartCoroutine(IdleFarm());
         }*/
+        Cindition(money, koin, 0, 10, firstAch);
+        Cindition(money, koint, 2, 30, thisttAch);
+        Cindition(money, koinh, 2, 60, treeAch);
 
-       
-
-
-
-        //StartCoroutine(IdleFarm());
-
-
-
-        /*if (money >= 30 && koint ==0 )
+       /* if (money >= 30 && koint ==1 )
         {
             thisttAch.interactable = true;
 
@@ -130,7 +133,7 @@ public class Achivestotal : MonoBehaviour
         {
             thisttAch.interactable = false;
         }
-        if (money >= 60 && koinh ==0 )
+        if (money >= 60 && koinh ==1 )
         {
             treeAch.interactable = true;
 
