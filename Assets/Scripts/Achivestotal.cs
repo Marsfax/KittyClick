@@ -22,7 +22,7 @@ public class Achivestotal : MonoBehaviour
 
     void Start()
     {
-      
+    
        
     }
     public void LoMenu()
@@ -69,7 +69,7 @@ public class Achivestotal : MonoBehaviour
     }*/
     IEnumerator IdleFarm()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(1f);
         int money = PlayerPrefs.GetInt("money");//���������
         money++;
         Debug.Log(money);
@@ -96,10 +96,10 @@ public class Achivestotal : MonoBehaviour
         {
             firstAch.interactable = false;
         }
-        if (koin == 1)
-        {
+        if (koin ==1){
             StartCoroutine(IdleFarm());
         }
+        
         
         
         /*if (money >= 30 && koint ==0 )
