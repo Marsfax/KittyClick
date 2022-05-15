@@ -9,8 +9,8 @@ public class Achivestotal : MonoBehaviour
     
     // koint and koinh no value is assigned "0", assigned automatically "2" 
     [SerializeField] int koin = 0;
-    [SerializeField] int koint = 2;
-    [SerializeField] int koinh = 2;
+    [SerializeField] int koint = 0;
+    [SerializeField] int koinh = 0;
 
     public Text kointext;
     public Text kointextb;
@@ -38,7 +38,6 @@ public class Achivestotal : MonoBehaviour
     void Start()
     {
  
-        
         int koin = PlayerPrefs.GetInt("koin");
         int koint = PlayerPrefs.GetInt("koint");
         int koinh = PlayerPrefs.GetInt("koinh");
@@ -46,13 +45,19 @@ public class Achivestotal : MonoBehaviour
         {
             StartCoroutine(IdleFarm());
         }
-
+        if (koint == 1)
+        {
+            StartCoroutine(IdleFarmt());
+        }
+        if (koinh == 1)
+        {
+            StartCoroutine(IdleFarmh());
+        }
 
     }
   
     public void LoMenu()
     {
-        
         SceneManager.LoadScene(0);
     }
     public void GetFirst()
@@ -61,7 +66,6 @@ public class Achivestotal : MonoBehaviour
         money += 10;
         PlayerPrefs.SetInt("money", money);//���������
 
-        
         int koin = 1;
         PlayerPrefs.SetInt("koin", koin);
         StartCoroutine(IdleFarm());
@@ -72,9 +76,9 @@ public class Achivestotal : MonoBehaviour
         money += 100;
         PlayerPrefs.SetInt("money", money);//���������
 
-        
-        int koint = 3;
+        int koint = 1;
         PlayerPrefs.SetInt("koint", koint);
+        StartCoroutine(IdleFarmt());
     }
     public void GetThree()
     {
@@ -82,25 +86,48 @@ public class Achivestotal : MonoBehaviour
         money += 1000;
         PlayerPrefs.SetInt("money", money);//���������
 
-        
-        int koinh = 3;
+        int koinh = 1;
         PlayerPrefs.SetInt("koinh", koinh);
+        StartCoroutine(IdleFarmh());
     }
    
     IEnumerator IdleFarm()
     {
 
-        
          yield return new WaitForSeconds(1f);
 
          int money = PlayerPrefs.GetInt("money");
-         money++;
+         money += 1;
          Debug.Log(money);
          PlayerPrefs.SetInt("money", money);
          StartCoroutine(IdleFarm());
   
     }
-  
+    IEnumerator IdleFarmt()
+    {
+
+        yield return new WaitForSeconds(1f);
+
+        int money = PlayerPrefs.GetInt("money");
+        money += 100;
+        Debug.Log(money);
+        PlayerPrefs.SetInt("money", money);
+        StartCoroutine(IdleFarmt());
+
+    }
+    IEnumerator IdleFarmh()
+    {
+
+        yield return new WaitForSeconds(1f);
+
+        int money = PlayerPrefs.GetInt("money");
+        money += 1000;
+        Debug.Log(money);
+        PlayerPrefs.SetInt("money", money);
+        StartCoroutine(IdleFarmh());
+
+    }
+
     private void Update()
     {
         int money = PlayerPrefs.GetInt("money");
@@ -111,37 +138,10 @@ public class Achivestotal : MonoBehaviour
         kointextb.text = koint.ToString();
         kointextj.text = koinh.ToString();
 
-        /*if (money >= 10 && koin ==0 )
-        {
-            firstAch.interactable = true;
-
-        }
-        else
-        {
-            firstAch.interactable = false;
-        }*/
         Cindition(money, koin, 0, 10, firstAch);
-        Cindition(money, koint, 2, 30, thisttAch);
-        Cindition(money, koinh, 2, 60, treeAch);
+        Cindition(money, koint, 0, 20, thisttAch);
+        Cindition(money, koinh, 0, 30, treeAch);
 
-       /* if (money >= 30 && koint ==1 )
-        {
-            thisttAch.interactable = true;
-
-        }
-        else
-        {
-            thisttAch.interactable = false;
-        }
-        if (money >= 60 && koinh ==1 )
-        {
-            treeAch.interactable = true;
-
-        }
-        else
-        {
-            treeAch.interactable = false;
-        }*/
     }
 
 

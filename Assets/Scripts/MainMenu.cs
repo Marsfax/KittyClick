@@ -1,3 +1,4 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -24,11 +25,21 @@ public class MainMenu : MonoBehaviour
         scoreText.text = levelScore.ToString();
         ScoreTextArch.text = levelScore.ToString();
         int koin = PlayerPrefs.GetInt("koin");
+        int koint = PlayerPrefs.GetInt("koint");
+        int koinh = PlayerPrefs.GetInt("koinh");
         if (koin == 1)
         {
             StartCoroutine(IdleFarm());
         }
-        
+        if (koint == 1)
+        {
+            StartCoroutine(IdleFarmt());
+        }
+        if (koinh == 1)
+        {
+            StartCoroutine(IdleFarmh());
+        }
+
 
     }
     IEnumerator IdleFarm()
@@ -43,6 +54,30 @@ public class MainMenu : MonoBehaviour
         PlayerPrefs.SetInt("money", money);
         StartCoroutine(IdleFarm());
         
+    }
+    IEnumerator IdleFarmt()
+    {
+
+        yield return new WaitForSeconds(1f);
+
+        int money = PlayerPrefs.GetInt("money");
+        money += 100;
+        Debug.Log(money);
+        PlayerPrefs.SetInt("money", money);
+        StartCoroutine(IdleFarmt());
+
+    }
+    IEnumerator IdleFarmh()
+    {
+
+        yield return new WaitForSeconds(1f);
+
+        int money = PlayerPrefs.GetInt("money");
+        money += 1000;
+        Debug.Log(money);
+        PlayerPrefs.SetInt("money", money);
+        StartCoroutine(IdleFarmh());
+
     }
     public void ButtonClick()
     {
@@ -74,8 +109,14 @@ public class MainMenu : MonoBehaviour
         PlayerPrefs.SetInt("up", up);
         PlayerPrefs.SetInt("levelScore", levelScore);
         int koin = PlayerPrefs.GetInt("koin");
+        int koint = PlayerPrefs.GetInt("koint");
+        int koinh = PlayerPrefs.GetInt("koinh");
         koin = 0;
+        koint = 0;
+        koinh = 0;
         PlayerPrefs.SetInt("koin", koin);
+        PlayerPrefs.SetInt("koint", koint);
+        PlayerPrefs.SetInt("koinh", koinh);
         //StopCoroutine(IdleFarm());
         StopAllCoroutines();
     }
