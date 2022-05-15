@@ -6,58 +6,28 @@ using UnityEngine.SceneManagement;
 
 public class Achivestotal : MonoBehaviour
 {
-    
-    // koint and koinh no value is assigned "0", assigned automatically "2" 
+    //public int total_money;
+
     [SerializeField] int koin = 0;
-    [SerializeField] int koint = 0;
-    [SerializeField] int koinh = 0;
-
+    /*[SerializeField] int koint = 0;
+    [SerializeField] int koinh = 0;*/
     public Text kointext;
-    public Text kointextb;
-    public Text kointextj;
-    
+    /*public Text kointtext;
+    public Text koinhtext;*/
+    //int levelScore;
     [SerializeField] Button firstAch;
-    [SerializeField] Button thisttAch;
-    [SerializeField] Button treeAch;
+    /*[SerializeField] Button thisttAch;
+    [SerializeField] Button treeAch;*/
     
-    public void Cindition (int a, int b, int c, int d, Button but)
-    {
-        int money = PlayerPrefs.GetInt("a");
-        PlayerPrefs.SetInt("a", a);
-       
-        if (a >= d && b == c)
-        {
-            but.interactable = true;
 
-        }
-        else
-        {
-            but.interactable = false;
-        } 
-    }
     void Start()
     {
- 
-        int koin = PlayerPrefs.GetInt("koin");
-        int koint = PlayerPrefs.GetInt("koint");
-        int koinh = PlayerPrefs.GetInt("koinh");
-        if (koin == 1)
-        {
-            StartCoroutine(IdleFarm());
-        }
-        if (koint == 1)
-        {
-            StartCoroutine(IdleFarmt());
-        }
-        if (koinh == 1)
-        {
-            StartCoroutine(IdleFarmh());
-        }
-
+    
+       
     }
-  
     public void LoMenu()
     {
+        
         SceneManager.LoadScene(0);
     }
     public void GetFirst()
@@ -66,19 +36,20 @@ public class Achivestotal : MonoBehaviour
         money += 10;
         PlayerPrefs.SetInt("money", money);//���������
 
+        
         int koin = 1;
         PlayerPrefs.SetInt("koin", koin);
-        StartCoroutine(IdleFarm());
+        
     }
-    public void GetTwesdy()
+    /*public void GetTwesdy()
     {
         int money = PlayerPrefs.GetInt("money");//���������
         money += 100;
         PlayerPrefs.SetInt("money", money);//���������
 
+        
         int koint = 1;
         PlayerPrefs.SetInt("koint", koint);
-        StartCoroutine(IdleFarmt());
     }
     public void GetThree()
     {
@@ -86,62 +57,69 @@ public class Achivestotal : MonoBehaviour
         money += 1000;
         PlayerPrefs.SetInt("money", money);//���������
 
+        
         int koinh = 1;
         PlayerPrefs.SetInt("koinh", koinh);
-        StartCoroutine(IdleFarmh());
-    }
-   
+    }*/
+    /*public void ClearFirst()
+    {
+        int koin = PlayerPrefs.GetInt("koin");
+        koin = 0;
+        PlayerPrefs.SetInt("koin", koin);
+    }*/
     IEnumerator IdleFarm()
     {
-
-         yield return new WaitForSeconds(1f);
-
-         int money = PlayerPrefs.GetInt("money");
-         money += 1;
-         Debug.Log(money);
-         PlayerPrefs.SetInt("money", money);
-         StartCoroutine(IdleFarm());
-  
-    }
-    IEnumerator IdleFarmt()
-    {
-
         yield return new WaitForSeconds(1f);
-
-        int money = PlayerPrefs.GetInt("money");
-        money += 100;
+        int money = PlayerPrefs.GetInt("money");//���������
+        money++;
         Debug.Log(money);
         PlayerPrefs.SetInt("money", money);
-        StartCoroutine(IdleFarmt());
-
+        StartCoroutine (IdleFarm());
+        
     }
-    IEnumerator IdleFarmh()
-    {
-
-        yield return new WaitForSeconds(1f);
-
-        int money = PlayerPrefs.GetInt("money");
-        money += 1000;
-        Debug.Log(money);
-        PlayerPrefs.SetInt("money", money);
-        StartCoroutine(IdleFarmh());
-
-    }
-
-    private void Update()
+    private void FixedUpdate()
     {
         int money = PlayerPrefs.GetInt("money");
         int koin = PlayerPrefs.GetInt("koin");
-        int koint = PlayerPrefs.GetInt("koint");
-        int koinh = PlayerPrefs.GetInt("koinh");
+        /*int koint = PlayerPrefs.GetInt("koint");
+        int koinh = PlayerPrefs.GetInt("koinh");*/
         kointext.text = koin.ToString();
-        kointextb.text = koint.ToString();
-        kointextj.text = koinh.ToString();
+        /*kointtext.text = koint.ToString();
+        kointtext.text = koinh.ToString();*/
+        
+        if (money >= 10 && koin ==0 )
+        {
+            firstAch.interactable = true;
 
-        Cindition(money, koin, 0, 10, firstAch);
-        Cindition(money, koint, 0, 20, thisttAch);
-        Cindition(money, koinh, 0, 30, treeAch);
+        }
+        else
+        {
+            firstAch.interactable = false;
+        }
+        if (koin ==1){
+            StartCoroutine(IdleFarm());
+        }
+        
+        
+        
+        /*if (money >= 30 && koint ==0 )
+        {
+            thisttAch.interactable = true;
 
+        }
+        else
+        {
+            thisttAch.interactable = false;
+        }
+        if (money >= 60 && koinh ==0 )
+        {
+            treeAch.interactable = true;
+
+        }
+        else
+        {
+            treeAch.interactable = false;
+        }*/
     }
 
 
