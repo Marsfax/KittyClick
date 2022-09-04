@@ -139,8 +139,8 @@ public class Achivestotal : MonoBehaviour
         kointextj.text = koinh.ToString();
 
         Cindition(money, koin, 0, 10, firstAch);
-        Cindition(money, koint, 0, 20, thisttAch);
-        Cindition(money, koinh, 0, 30, treeAch);
+        Cindition(money, koint, 0, 100, thisttAch);
+        Cindition(money, koinh, 0, 1000, treeAch);
 
     }
 
