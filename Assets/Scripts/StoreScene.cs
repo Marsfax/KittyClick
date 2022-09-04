@@ -6,45 +6,30 @@ using UnityEngine.SceneManagement;
 
 public class StoreScene : MonoBehaviour
 {
-    
-    public Sprite Oneimage;
-    public Sprite Twoimage;
-    [SerializeField] int icona;
-    [SerializeField] int money;
-    //PlayerPrefs.SetInt("money", money);
-    [SerializeField] Button firstIcon;
+   
+    public Sprite pic1;
+    public Sprite pic2;//zamenit sprite na image
 
+    public Image im;
     void Start()
     {
-        icona = 0;
-        PlayerPrefs.SetInt("icona", icona);
-
+        im = GetComponent<Image>();
+        im.sprite = pic1;
     }
-  
-    public void LoMenu()
-    {   
-        SceneManager.LoadScene(0);
-    }
-    //public void LoadIcon()
-   // {
-       // Oneimage.GetComponent<Sprite>(Twoimage);
 
-   // }
-    void Update()
+    public void oclickk()
     {
-        PlayerPrefs.SetInt("money", money);
-        if (money >= 10 && icona == 0)
+        if (im.sprite == pic1)
         {
-            firstIcon.interactable = true;
-
+            im.sprite = pic2;
+            return;
         }
-        else
+
+        else if (im.sprite == pic2)
         {
-            firstIcon.interactable = false;
+            im.sprite = pic1;
+            return;
         }
     }
-    /*void imageUp()
-    {
-        var Upping3 = 
-    }*/
+   
 }
